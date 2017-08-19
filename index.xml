@@ -6,10 +6,21 @@
     <description>Recent content on dtouch3d&#39;s bl0g</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 17 Aug 2017 23:52:38 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 19 Aug 2017 18:55:38 +0300</lastBuildDate>
     
 	<atom:link href="https://dtouch3d.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Paper Notes: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution</title>
+      <link>https://dtouch3d.github.io/blog/paper-notes-non-semantics-preserving-transformations-for-higher-coverage-test-generation-using-symbolic-execution/</link>
+      <pubDate>Sat, 19 Aug 2017 18:55:38 +0300</pubDate>
+      
+      <guid>https://dtouch3d.github.io/blog/paper-notes-non-semantics-preserving-transformations-for-higher-coverage-test-generation-using-symbolic-execution/</guid>
+      <description>Title: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution [PDF]
+In this paper a number of non-semantics-preserving transformations are proposed in order to increase code coverage on symbolic execution. These transformations produce a simpler program by removing basic blocks based on metrics like path length, hence the non-semantics-preserving part.
+The most performant transformation appears to be the one that causes all loops to return after a single iteration, which of course greatly reduces the state space and allows symbolic execution to reach deeper paths.</description>
+    </item>
     
     <item>
       <title>About</title>

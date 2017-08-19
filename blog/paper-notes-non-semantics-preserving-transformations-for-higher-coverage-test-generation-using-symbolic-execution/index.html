@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="dtouch3d">
+<meta name="description" content="Title: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution [PDF]
+In this paper a number of non-semantics-preserving transformations are proposed in order to increase code coverage on symbolic execution. These transformations produce a simpler program by removing basic blocks based on metrics like path length, hence the non-semantics-preserving part.
+The most performant transformation appears to be the one that causes all loops to return after a single iteration, which of course greatly reduces the state space and allows symbolic execution to reach deeper paths.">
+
+<meta property="og:title" content="Paper Notes: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution" />
+<meta property="og:description" content="Title: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution [PDF]
+In this paper a number of non-semantics-preserving transformations are proposed in order to increase code coverage on symbolic execution. These transformations produce a simpler program by removing basic blocks based on metrics like path length, hence the non-semantics-preserving part.
+The most performant transformation appears to be the one that causes all loops to return after a single iteration, which of course greatly reduces the state space and allows symbolic execution to reach deeper paths." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dtouch3d.github.io/blog/paper-notes-non-semantics-preserving-transformations-for-higher-coverage-test-generation-using-symbolic-execution/" />
+
+
+
+<meta property="article:published_time" content="2017-08-19T18:55:38&#43;03:00"/>
+<meta property="article:modified_time" content="2017-08-19T18:55:38&#43;03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Paper Notes: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution 
+
+</title>
+<link rel="canonical" href="https://dtouch3d.github.io/blog/paper-notes-non-semantics-preserving-transformations-for-higher-coverage-test-generation-using-symbolic-execution/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://dtouch3d.github.io/css/reset.css?t=2017-08-19%2021%3a16%3a57.643562366%20%2b0300%20EEST">
+    <link rel="stylesheet" href="https://dtouch3d.github.io/css/pygments.css?t=2017-08-19%2021%3a16%3a57.643562366%20%2b0300%20EEST">
+    <link rel="stylesheet" href="https://dtouch3d.github.io/css/main.css?t=2017-08-19%2021%3a16%3a57.643562366%20%2b0300%20EEST">
+    
+        <link rel="stylesheet" href="https://dtouch3d.github.io/css/override.css?t=2017-08-19%2021%3a16%3a57.643562366%20%2b0300%20EEST">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://dtouch3d.github.io/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                
+                <a href="https://dtouch3d.github.io/"><img class="avatar" src="https://dtouch3d.github.io/img/profile.jpg" srcset="https://dtouch3d.github.io/img/profile.jpg 1x"></a>
+            
+            <a href="https://dtouch3d.github.io/"><div class="name">dtouch3d</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://dtouch3d.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://dtouch3d.github.io/about/"><span>About</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/dtouch3d" target="_blank" rel="noopener"><img class="icon" src="https://dtouch3d.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/dtouch3d" target="_blank" rel="noopener"><img class="icon" src="https://dtouch3d.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:dtouch3d@gmail.com"><img class="icon" src="https://dtouch3d.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://dtouch3d.github.io/index.xml"><img class="icon" src="https://dtouch3d.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Paper Notes: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution
+
+</div>
+
+                    <div class="initials"><a href="https://dtouch3d.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Sat Aug 19 2017 18:55:38 EEST'>Aug 19, 2017</div>
+                    
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Title: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution <a href="../../papers/Non-Semantics-Preserving.Transformations.Converse.2017.pdf">[PDF]</a></p>
+
+<p>In this paper a number of non-semantics-preserving transformations are proposed
+in order to increase code coverage on symbolic execution. These transformations
+produce a simpler program by removing basic blocks based on metrics like path
+length, hence the non-semantics-preserving part.</p>
+
+<p>The most performant transformation appears to be the one that causes all loops
+to return after a single iteration, which of course greatly reduces the state
+space and allows symbolic execution to reach deeper paths.</p>
+
+<p>There is an argument that these transformations are not suitable for all
+programs since part of the functionality is removed and the results may not be
+reproducible in the original. From the paper&rsquo;s results however it seems that
+for the purpose of producing better test cases it has the potential to produce
+good results.</p>
+
+                <br>
+		<p><a href="https://dtouch3d.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+

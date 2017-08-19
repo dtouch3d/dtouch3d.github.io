@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dtouch3d.github.io/blog/paper-notes-non-semantics-preserving-transformations-for-higher-coverage-test-generation-using-symbolic-execution/</loc>
+    <lastmod>2017-08-19T18:55:38+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dtouch3d.github.io/about/</loc>
     <lastmod>2017-08-17T23:52:38+03:00</lastmod>
   </url>
@@ -14,7 +19,7 @@
   
   <url>
     <loc>https://dtouch3d.github.io/blog/</loc>
-    <lastmod>2017-08-17T23:52:08+03:00</lastmod>
+    <lastmod>2017-08-19T18:55:38+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -30,7 +35,7 @@
   
   <url>
     <loc>https://dtouch3d.github.io/</loc>
-    <lastmod>2017-08-17T23:52:38+03:00</lastmod>
+    <lastmod>2017-08-19T18:55:38+03:00</lastmod>
     <priority>0</priority>
   </url>
   
