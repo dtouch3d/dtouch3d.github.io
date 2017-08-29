@@ -6,10 +6,21 @@
     <description>Recent content on dtouch3d&#39;s bl0g</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 19 Aug 2017 18:55:38 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 29 Aug 2017 23:41:35 +0300</lastBuildDate>
     
 	<atom:link href="https://dtouch3d.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Paper Notes: Bootstomp: on the Security of Bootloaders in Mobile Devices</title>
+      <link>https://dtouch3d.github.io/blog/paper-notes-bootstomp-on-the-security-of-bootloaders-in-mobile-devices/</link>
+      <pubDate>Tue, 29 Aug 2017 23:41:35 +0300</pubDate>
+      
+      <guid>https://dtouch3d.github.io/blog/paper-notes-bootstomp-on-the-security-of-bootloaders-in-mobile-devices/</guid>
+      <description>Title: Bootstomp: on the Security of Bootloaders in Mobile Devices [PDF]
+BootStomp is a tool that searches for vulnerabilities in bootloaders of mobile devices. There are two types of vulnerabilities covered. The first is code execution in the bootloader via a memory corruption bug. The second is unlocking the bootloader without the consent of the user which enables code execution with higher permissions and possibly persistence.
+BootStomp uses dynamic symbolic execution to perform taint analysis on bootloader code typically runnning on ARM&amp;rsquo;s exception level 1 (EL1).</description>
+    </item>
     
     <item>
       <title>Paper Notes: Non-Semantics-Preserving Transformations For Higher-Coverage Test Generation Using Symbolic Execution</title>

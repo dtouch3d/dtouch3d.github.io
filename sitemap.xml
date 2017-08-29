@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dtouch3d.github.io/blog/paper-notes-bootstomp-on-the-security-of-bootloaders-in-mobile-devices/</loc>
+    <lastmod>2017-08-29T23:41:35+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dtouch3d.github.io/blog/paper-notes-non-semantics-preserving-transformations-for-higher-coverage-test-generation-using-symbolic-execution/</loc>
     <lastmod>2017-08-19T18:55:38+03:00</lastmod>
   </url>
@@ -19,7 +24,7 @@
   
   <url>
     <loc>https://dtouch3d.github.io/blog/</loc>
-    <lastmod>2017-08-19T18:55:38+03:00</lastmod>
+    <lastmod>2017-08-29T23:41:35+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -35,7 +40,7 @@
   
   <url>
     <loc>https://dtouch3d.github.io/</loc>
-    <lastmod>2017-08-19T18:55:38+03:00</lastmod>
+    <lastmod>2017-08-29T23:41:35+03:00</lastmod>
     <priority>0</priority>
   </url>
   

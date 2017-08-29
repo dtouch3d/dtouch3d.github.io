@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="dtouch3d">
+<meta name="description" content="Title: Bootstomp: on the Security of Bootloaders in Mobile Devices [PDF]
+BootStomp is a tool that searches for vulnerabilities in bootloaders of mobile devices. There are two types of vulnerabilities covered. The first is code execution in the bootloader via a memory corruption bug. The second is unlocking the bootloader without the consent of the user which enables code execution with higher permissions and possibly persistence.
+BootStomp uses dynamic symbolic execution to perform taint analysis on bootloader code typically runnning on ARM&rsquo;s exception level 1 (EL1).">
+
+<meta property="og:title" content="Paper Notes: Bootstomp: on the Security of Bootloaders in Mobile Devices" />
+<meta property="og:description" content="Title: Bootstomp: on the Security of Bootloaders in Mobile Devices [PDF]
+BootStomp is a tool that searches for vulnerabilities in bootloaders of mobile devices. There are two types of vulnerabilities covered. The first is code execution in the bootloader via a memory corruption bug. The second is unlocking the bootloader without the consent of the user which enables code execution with higher permissions and possibly persistence.
+BootStomp uses dynamic symbolic execution to perform taint analysis on bootloader code typically runnning on ARM&rsquo;s exception level 1 (EL1)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dtouch3d.github.io/blog/paper-notes-bootstomp-on-the-security-of-bootloaders-in-mobile-devices/" />
+
+
+
+<meta property="article:published_time" content="2017-08-29T23:41:35&#43;03:00"/>
+<meta property="article:modified_time" content="2017-08-29T23:41:35&#43;03:00"/>
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+
+
+     Paper Notes: Bootstomp: on the Security of Bootloaders in Mobile Devices 
+
+</title>
+<link rel="canonical" href="https://dtouch3d.github.io/blog/paper-notes-bootstomp-on-the-security-of-bootloaders-in-mobile-devices/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="https://dtouch3d.github.io/css/reset.css?t=2017-08-30%2001%3a06%3a10.3339986%20%2b0300%20EEST">
+    <link rel="stylesheet" href="https://dtouch3d.github.io/css/pygments.css?t=2017-08-30%2001%3a06%3a10.3339986%20%2b0300%20EEST">
+    <link rel="stylesheet" href="https://dtouch3d.github.io/css/main.css?t=2017-08-30%2001%3a06%3a10.3339986%20%2b0300%20EEST">
+    
+        <link rel="stylesheet" href="https://dtouch3d.github.io/css/override.css?t=2017-08-30%2001%3a06%3a10.3339986%20%2b0300%20EEST">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://dtouch3d.github.io/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                
+                <a href="https://dtouch3d.github.io/"><img class="avatar" src="https://dtouch3d.github.io/img/profile.jpg" srcset="https://dtouch3d.github.io/img/profile.jpg 1x"></a>
+            
+            <a href="https://dtouch3d.github.io/"><div class="name">dtouch3d</div></a>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-blog"><a href="https://dtouch3d.github.io/blog/"><span>Blog</span></a></li>
+                    
+                        <li class="nav-about"><a href="https://dtouch3d.github.io/about/"><span>About</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/dtouch3d" target="_blank" rel="noopener"><img class="icon" src="https://dtouch3d.github.io/img/github.svg" alt="github" /></a>
+        
+
+        
+            <a href="//twitter.com/dtouch3d" target="_blank" rel="noopener"><img class="icon" src="https://dtouch3d.github.io/img/twitter.svg" alt="twitter" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:dtouch3d@gmail.com"><img class="icon" src="https://dtouch3d.github.io/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://dtouch3d.github.io/index.xml"><img class="icon" src="https://dtouch3d.github.io/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Paper Notes: Bootstomp: on the Security of Bootloaders in Mobile Devices
+
+</div>
+
+                    <div class="initials"><a href="https://dtouch3d.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='Tue Aug 29 2017 23:41:35 EEST'>Aug 29, 2017</div>
+                    
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                <p>Title: Bootstomp: on the Security of Bootloaders in Mobile Devices <a href="../../papers/bootstomp.pdf">[PDF]</a></p>
+
+<p>BootStomp is a tool that searches for vulnerabilities in bootloaders of mobile
+devices. There are two types of vulnerabilities covered.  The first is code
+execution in the bootloader via a memory corruption bug. The second is
+unlocking the bootloader without the consent of the user which enables code
+execution with higher permissions and possibly persistence.</p>
+
+<p>BootStomp uses dynamic symbolic execution to perform taint analysis on
+bootloader code typically runnning on ARM&rsquo;s exception level 1 (EL1). Hex-Rays
+is used to identify seeds of taint, meaning untusted input from the
+non-volatile memory, for example <code>read_mmc()</code>. Then Hex-Rays identifies sinks
+of taint, or interesting code that is typically dangerous (memcpy-like
+functions) or filesystem writes.</p>
+
+<p>Finally symbolic execution (using angr) and taint analysis help identify sinks
+of taint that process untrusted input.  BootStomp uses under-constrained
+symbolic execution, examining only functions that call input functions that
+provide taint. Also, a simple type-inference is performed to cut down on
+symbolic variables and concretize as many variables as possible.</p>
+
+<p>To mitigate state explosion, a number of execution strategies are used during symbolic execution.</p>
+
+<ul>
+<li>If there is no taint, skip any function calls</li>
+<li>If a function does not take tainted input as argument, skip it Use an</li>
+<li>adaptive inter-function level to skip functions that are too far from the
+entry point</li>
+<li>Loops are executed only once</li>
+</ul>
+
+<p>The above can of course lead to situations where taint is not propagated appropriately resulting in false negatives but they appear to be necessary tradeoffs.</p>
+
+<p>For symbolic memory, the concretization strategy assigns the smallest values to pointer memory and avoids assignment of the same value to different pointers.</p>
+
+<p>BootStomp was able to find 5 vulnerabilities in bootloader code in a short amount of time (albeit with a 12-Core 128GB machine) so the results look promising.</p>
+
+<p>Also the code is on <a href="https://github.com/ucsb-seclab/BootStomp">GitHub</a>, kudos for open source release of tools in academia.</p>
+
+                <br>
+		<p><a href="https://dtouch3d.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+
